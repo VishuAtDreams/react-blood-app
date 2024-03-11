@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -20,13 +20,14 @@ const Login = () => {
 
   const handelSubmit = async (e) => {
     e.preventDefault();
+    console.log("This Is URL", import.meta.env);
     try {
       const res = await axios.post(
-        `${process.env.REACT_APP_DOMAIN_URL}/signin`,
+        `${import.meta.env.VITE_API_URL}/signin`,
         { ...formData },
         { headers: { "Content-Type": "application/json" } }
       );
-      const { data, error } = res.data;
+      const { data, error } = res;
       // Handle response data as needed
       console.log(data);
       // Redirect upon successful login
